@@ -64,6 +64,27 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 		fmt.Fprintf(w, "缺少账号或密码")
 		return
 	}
-	
+
+	// Make the form for login post
+
+	data := make(url.Values)
+	data["username"] = []string{username}
+	data["password"] = []string{password}
+
+	Waitgroup.Wait()
+
+	data["lt"]        = []string{lt}
+	data["execution"] = []string{execution}
+	data["_eventId"]  = []string{"submit"}
+
+	// POST to login with the form above
+
+	response, err = client.PostForm(LOGIN, data)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	body, _ = ioutil.ReadAll(response.Body)
+
 	return
 }
