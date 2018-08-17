@@ -86,5 +86,23 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 	defer response.Body.Close()
 	body, _ = ioutil.ReadAll(response.Body)
 
+	// Check the status
+
+	success, _ := regexp.MatchString("当前用户", string(body))
+	if success {
+		fmt.Println(time.Now().Format("2006/01/02 15:04:05"), username, "登录成功")
+	} else {
+		fmt.Println(time.Now().Format("2006/01/02 15:04:05"), username, "登录失败")
+		fmt.Fprintf(w, "用户名或密码错误")
+		return
+	}
+
+	response, err = client.Get(CARD)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	body, _ = ioutil.ReadAll(response.Body)
+	
 	return
 }
