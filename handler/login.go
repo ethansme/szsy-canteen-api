@@ -50,9 +50,9 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 	)
 
 	Waitgroup.Add(1)
-	go Reg(&lt, "lt\" value=\"(.*)\"", string(body))
+	go Find(&lt, "lt\" value=\"(.*)\"", string(body))
 	Waitgroup.Add(1)
-	go Reg(&execution, "execution\" value=\"(.*)\"", string(body))
+	go Find(&execution, "execution\" value=\"(.*)\"", string(body))
 
 	// Take values in the form from request
 
@@ -104,5 +104,20 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 	defer response.Body.Close()
 	body, _ = ioutil.ReadAll(response.Body)
 	
+	var (
+		user  string
+		money string
+	)
+
+	Waitgroup.Add(1)
+	go Find(&user, "用户：(.*)</span></span><span style", string(body))
+	Waitgroup.Add(1)
+	go Find(&money, "余额：(.*)</span></span><span style", string(body))
+
+	cookies_raw  := strings.Split(response.Request.Header["Cookie"][0], "=")
+	SessionId    := cookies_raw[2]
+	LcSoftCardV2 := strings.Split(cookies_raw[1], ";")[0]
+	cookies      := LcSoftCardV2 + "," + SessionId
+
 	return
 }
