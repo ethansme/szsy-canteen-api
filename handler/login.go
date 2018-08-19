@@ -103,7 +103,7 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 	}
 	defer response.Body.Close()
 	body, _ = ioutil.ReadAll(response.Body)
-	
+
 	var (
 		user  string
 		money string
@@ -119,5 +119,19 @@ func LoginHandler(w http.ResponseWriter, request *http.Request) {
 	LcSoftCardV2 := strings.Split(cookies_raw[1], ";")[0]
 	cookies      := LcSoftCardV2 + "," + SessionId
 
+	// Make the JSON and Return
+
+	var Info Info
+	Info.Cookies = cookies
+	Waitgroup.Wait()
+	Info.Name    = user
+	Info.Money   = money
+
+	json_Info, err := json.Marshal(Info)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Fprintf(w, string(json_Info))
 	return
 }
