@@ -35,8 +35,8 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 	// Make Cookies
 
 	cookie_CasModule    := http.Cookie{
-			Name:  "LcSoftCardV2.CasModule",
-			Value: "/card/",
+		Name:  "LcSoftCardV2.CasModule",
+		Value: "/card/",
 	}
 	cookie_LcSoftCardV2 := http.Cookie{
 		Name:  ".LcSoftCardV2",
@@ -46,6 +46,26 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 		Name:  "ASP.NET_SessionId",
 		Value: SessionId,
 	}
+
+	// GET DATE Page
+
+	request, err := http.NewRequest("GET", DATE, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	// Add Cookies
+
+	request.AddCookie(&cookie_CasModule)
+	request.AddCookie(&cookie_LcSoftCardV2)
+	request.AddCookie(&cookie_SessionId)
+
+	response, err := client.Do(request)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	body, _ := ioutil.ReadAll(response.Body)
 
 	return
 }
