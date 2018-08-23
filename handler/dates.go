@@ -67,5 +67,29 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 	defer response.Body.Close()
 	body, _ := ioutil.ReadAll(response.Body)
 
+	// Check if Cookies are still alive
+
+	re_check := regexp.MustCompile("<input id=\"username\" name=\"username\"")
+	if len(re_check.FindStringSubmatch(string(body))) != 0 {
+		fmt.Fprintln(w, "口令错误或过期")
+		return
+	}
+
+	// Match for available dates
+
+	var (
+		VIEWSTATE          string
+		VIEWSTATEGENERATOR string
+		EVENTVALIDATION    string
+		dates_raw          [][]string
+	)
+
+	Waitgroup.Add(1)
+	go func() {
+		re_dates := regexp.MustCompile("Date=(.*)\" target=\"RestaurantContent\">(.*)<font color='red'>订餐</font>")
+		dates_raw = re_dates.FindAllStringSubmatch(string(body), 32)
+		Waitgroup.Done()
+	}()
+
 	return
 }
