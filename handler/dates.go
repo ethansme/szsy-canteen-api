@@ -91,5 +91,16 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 		Waitgroup.Done()
 	}()
 
+	// Never forget the next month
+
+	month := int(time.Now().Month())
+	year  := int(time.Now().Year())
+	if month == 12 {
+		year = year + 1
+		month = 1
+	} else {
+		month = month + 1
+	}
+
 	return
 }
