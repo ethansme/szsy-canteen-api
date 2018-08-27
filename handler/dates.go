@@ -102,5 +102,18 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 		month = month + 1
 	}
 
+	data := make(url.Values)
+	data["__EVENTTARGET"]              = []string{"DrplstMonth1$DrplstControl"}
+	data["__EVENTARGUMENT"]            = []string{""}
+	data["__LASTFOCUS"]                = []string{""}
+	data["DrplstYear1$DrplstControl"]  = []string{strconv.Itoa(year)}
+	data["DrplstMonth1$DrplstControl"] = []string{strconv.Itoa(month)}
+
+	Waitgroup.Wait()
+
+	data["__VIEWSTATE"]          = []string{VIEWSTATE}
+	data["__VIEWSTATEGENERATOR"] = []string{VIEWSTATEGENERATOR}
+	data["__EVENTVALIDATION"]    = []string{EVENTVALIDATION}
+
 	return
 }
