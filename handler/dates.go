@@ -115,5 +115,17 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 	data["__VIEWSTATEGENERATOR"] = []string{VIEWSTATEGENERATOR}
 	data["__EVENTVALIDATION"]    = []string{EVENTVALIDATION}
 
+	request, err = http.NewRequest("POST", DATE, strings.NewReader(data.Encode()))
+	if err != nil {
+		panic(err)
+	}
+	request.Header.Set("Content-Type", "application/x-www-form-urlencoded; param=value")
+
+	// Add Cookies
+
+	request.AddCookie(&cookie_CasModule)
+	request.AddCookie(&cookie_LcSoftCardV2)
+	request.AddCookie(&cookie_SessionId)
+
 	return
 }
