@@ -127,5 +127,20 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 	request.AddCookie(&cookie_LcSoftCardV2)
 	request.AddCookie(&cookie_SessionId)
 
+	response, err = client.Do(request)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	body, _ = ioutil.ReadAll(response.Body)
+
+	// Add up to 'dates'
+
+	re_dates := regexp.MustCompile("Date=(.*)\" target=\"RestaurantContent\">(.*)<font color='red'>订餐</font>")
+	dates_next := re_dates.FindAllStringSubmatch(string(body), 32)
+	if len(dates_next) != 0 {
+		dates_raw = append(dates_raw, dates_next...)
+	}
+
 	return
 }
