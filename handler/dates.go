@@ -148,5 +148,14 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 		dates = append(dates, dates_raw[n][1])
 	}
 
+	var Dates Dates
+	Dates.Dates = dates
+
+	json_Dates, err := json.Marshal(Dates)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Fprintf(w, string(json_Dates))
+
 	return
 }
