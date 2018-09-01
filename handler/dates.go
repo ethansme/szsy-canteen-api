@@ -142,5 +142,11 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 		dates_raw = append(dates_raw, dates_next...)
 	}
 
+	var dates []string
+	dates_len := len(dates_raw)
+	for n := 0; n < dates_len; n++ {
+		dates = append(dates, dates_raw[n][1])
+	}
+
 	return
 }
