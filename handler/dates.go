@@ -155,7 +155,7 @@ func DatesHandler(w http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintf(w, string(json_Dates))
 
+	fmt.Fprintf(w, string(json_Dates))
 	return
 }
