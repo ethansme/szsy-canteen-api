@@ -32,6 +32,30 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 	if err == nil && len(form["date"]) > 0 {
 		date = form["date"][0]
 	}
+
+	var client http.Client
+
+	// Take values in the form from request
+
+	request.ParseForm()
+	cookies      := request.FormValue("口令")
+	LcSoftCardV2 := strings.Split(cookies, ",")[0]
+	SessionId    := strings.Split(cookies, ",")[1]
+
+	// Make Cookies
+
+	cookie_CasModule    := http.Cookie {
+		Name:  "LcSoftCardV2.CasModule",
+		Value: "/card/",
+	}
+	cookie_LcSoftCardV2 := http.Cookie {
+		Name:  ".LcSoftCardV2",
+		Value: LcSoftCardV2,
+	}
+	cookie_SessionId    := http.Cookie {
+		Name:  "ASP.NET_SessionId",
+		Value: SessionId,
+	}
 	
 	return
 }
