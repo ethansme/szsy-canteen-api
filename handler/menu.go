@@ -83,5 +83,25 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	// Fetch menu
+
+	var (
+		meal      	 []string
+		menu      	 [][]string
+		breakfast 	 [][]string
+		lunch     	 [][]string
+		dinner    	 [][]string
+
+		num          [][]string
+		notorder     []string
+		notorder_raw [][]int
+		index        string
+		category     string
+		name         string
+		price        string
+		number       string
+	)
+
+
 	return
 }
