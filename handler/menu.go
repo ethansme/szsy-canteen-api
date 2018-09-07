@@ -101,7 +101,12 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		price        string
 		number       string
 	)
-
+	
+	exist, _ := regexp.MatchString("时间段", string(body))
+	if !(exist) {
+		fmt.Fprintf(w, "无可订菜单")
+		return
+	}
 
 	return
 }
