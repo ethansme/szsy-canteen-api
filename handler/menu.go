@@ -108,5 +108,11 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	Waitgroup.Add(1)
+	go func() {
+		re_menu := regexp.MustCompile("<td width=\"40\">(.*)</td><td width=\"50\">(.*)</td><td align=\"left\" nowrap=\"nowrap\">(.*)</td><td width=\"50\">(&nbsp;)?(<font color='red'>套餐</font>)?</td><td width=\"50\">&nbsp;</td><td width=\"50\">(.*)</td><td>")
+		menu = re_menu.FindAllStringSubmatch(string(body), 30)
+		Waitgroup.Done()
+	}()
 	return
 }
