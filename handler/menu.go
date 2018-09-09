@@ -114,5 +114,13 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		menu = re_menu.FindAllStringSubmatch(string(body), 30)
 		Waitgroup.Done()
 	}()
+
+	Waitgroup.Add(1)
+	go func() {
+		re_num := regexp.MustCompile("<span id=\"Repeater1_GvReport_(.*)_TxtNum_[0-7]+\">(.*)</span>")
+		num = re_num.FindAllStringSubmatch(string(body), 30)
+		Waitgroup.Done()
+	}()
+	
 	return
 }
