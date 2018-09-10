@@ -122,5 +122,17 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		Waitgroup.Done()
 	}()
 	
+	Waitgroup.Add(1)
+	go func() {
+		peroids := []string{"早餐", "午餐", "晚餐"}
+		re_notorder := regexp.MustCompile("checked=\"checked\"")
+		notorder_raw = re_notorder.FindAllStringIndex(string(body), 3)
+		for _, n := range notorder_raw {
+			number0, _ := strconv.Atoi(string(body)[(n[0] - 16):(n[0] - 15)])
+			notorder = append(notorder, peroids[number0])
+		}
+		Waitgroup.Done()
+	}()
+
 	return
 }
