@@ -129,6 +129,15 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	} else {
 		dinner_param = strings.Split(dinner, ",")
 	}
-	
+
+	// Handle notorder
+
+	var i int
+
+	for i = 0; i < len(notorder); i++ {
+		data["__EVENTTARGET"] = []string{"Repeater1$ctl0" + notorder[i] + "$CbkMealtimes"}
+		data["Repeater1$ctl0"+notorder[i]+"$CbkMealtimes"] = []string{"on"}
+	}
+
 	return
 }
