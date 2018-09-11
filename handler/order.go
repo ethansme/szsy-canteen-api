@@ -27,5 +27,15 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 
 	var client http.Client
 
+	// Take values in the form from request
+
+	request.ParseForm()
+	cookies      := request.FormValue("口令")
+	breakfast    := request.FormValue("早餐")
+	lunch        := request.FormValue("午餐")
+	dinner       := request.FormValue("晚餐")
+	LcSoftCardV2 := strings.Split(cookies, ",")[0]
+	SessionId    := strings.Split(cookies, ",")[1]
+
 	return
 }
