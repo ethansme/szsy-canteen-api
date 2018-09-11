@@ -156,5 +156,19 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		}
 	}
 
+	// Make the JSON and Return
+
+	var Menu Menu
+
+	Menu.Notorder  = notorder
+	Menu.Breakfast = breakfast
+	Menu.Lunch     = lunch
+	Menu.Dinner    = dinner
+
+	json_Menu, err := json.Marshal(Menu)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Fprintf(w, string(json_Menu))
 	return
 }
