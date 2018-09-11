@@ -102,5 +102,33 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	Waitgroup.Add(1)
 	go Find(&EVENTVALIDATION, "id=\"__EVENTVALIDATION\" value=\"(.*)\"", string(body))
 
+	set_meal := []string{"1", "0", "0", "0", "0", "0", "0", "0", "0"}
+	no_meal  := []string{"0", "0", "0", "0", "0", "0", "0", "0", "0"}
+
+	if breakfast == "不订餐" {
+		notorder = append(notorder, "0")
+		breakfast_param = no_meal
+	} else if breakfast == "套餐" {
+		breakfast_param = set_meal
+	} else {
+		breakfast_param = strings.Split(breakfast, ",")
+	}
+	if lunch == "不订餐" {
+		notorder = append(notorder, "1")
+		lunch_param = no_meal
+	} else if lunch == "套餐" {
+		lunch_param = set_meal
+	} else {
+		lunch_param = strings.Split(lunch, ",")
+	}
+	if dinner == "不订餐" {
+		notorder = append(notorder, "2")
+		dinner_param = no_meal
+	} else if dinner == "套餐" {
+		dinner_param = set_meal
+	} else {
+		dinner_param = strings.Split(dinner, ",")
+	}
+	
 	return
 }
