@@ -63,5 +63,12 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	request.AddCookie(&cookie_LcSoftCardV2)
 	request.AddCookie(&cookie_SessionId)
 
+	response, err := client.Do(request)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	body, _ := ioutil.ReadAll(response.Body)
+
 	return
 }
