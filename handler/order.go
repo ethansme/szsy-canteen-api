@@ -37,5 +37,20 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	LcSoftCardV2 := strings.Split(cookies, ",")[0]
 	SessionId    := strings.Split(cookies, ",")[1]
 
+	// Make Cookies
+
+	cookie_CasModule := http.Cookie{
+		Name:  "LcSoftCardV2.CasModule",
+		Value: "/card/",
+	}
+	cookie_LcSoftCardV2 := http.Cookie{
+		Name:  ".LcSoftCardV2",
+		Value: LcSoftCardV2,
+	}
+	cookie_SessionId := http.Cookie{
+		Name:  "ASP.NET_SessionId",
+		Value: SessionId,
+	}
+
 	return
 }
