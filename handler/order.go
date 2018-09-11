@@ -93,5 +93,14 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		EVENTVALIDATION    string
 	)
 
+	data := make(url.Values)
+
+	Waitgroup.Add(1)
+	go Find(&VIEWSTATE, "id=\"__VIEWSTATE\" value=\"(.*)\"", string(body))
+	Waitgroup.Add(1)
+	go Find(&VIEWSTATEGENERATOR, "id=\"__VIEWSTATEGENERATOR\" value=\"(.*)\"", string(body))
+	Waitgroup.Add(1)
+	go Find(&EVENTVALIDATION, "id=\"__EVENTVALIDATION\" value=\"(.*)\"", string(body))
+
 	return
 }
