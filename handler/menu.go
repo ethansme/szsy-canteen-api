@@ -134,5 +134,17 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		Waitgroup.Done()
 	}()
 
+	Waitgroup.Wait()
+
+	menu_len := len(menu)
+
+	for n := 0; n < menu_len; n++ {
+		index    = menu[n][1]
+		category = menu[n][2]
+		name     = menu[n][3]
+		price    = menu[n][6]
+		number   = num[n][2]
+	}
+
 	return
 }
