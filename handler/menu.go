@@ -144,6 +144,16 @@ func MenuHandler(w http.ResponseWriter, request *http.Request) {
 		name     = menu[n][3]
 		price    = menu[n][6]
 		number   = num[n][2]
+
+		meal = []string{index, category, name, price, number}
+
+		if n <= 7 {
+			breakfast = append(breakfast, meal)
+		} else if n <= 15 {
+			lunch = append(lunch, meal)
+		} else {
+			dinner = append(dinner, meal)
+		}
 	}
 
 	return
