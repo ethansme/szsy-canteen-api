@@ -70,5 +70,28 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	defer response.Body.Close()
 	body, _ := ioutil.ReadAll(response.Body)
 
+	// Check if Cookies are still alive
+
+	re_check := regexp.MustCompile("<input id=\"username\" name=\"username\"")
+	if len(re_check.FindStringSubmatch(string(body))) != 0 {
+		fmt.Fprintln(w, "口令错误或过期")
+		return
+	}
+
+	var (
+		notorder        []string
+		peroid_num      int
+		
+		breakfast_param []string
+		lunch_param     []string
+		dinner_param    []string
+		order           []string
+		callbackparam   string
+
+		VIEWSTATE          string
+		VIEWSTATEGENERATOR string
+		EVENTVALIDATION    string
+	)
+
 	return
 }
