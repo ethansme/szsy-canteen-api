@@ -52,5 +52,16 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		Value: SessionId,
 	}
 
+	request, err = http.NewRequest("GET", MENU+date, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	// Add Cookies
+
+	request.AddCookie(&cookie_CasModule)
+	request.AddCookie(&cookie_LcSoftCardV2)
+	request.AddCookie(&cookie_SessionId)
+
 	return
 }
