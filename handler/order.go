@@ -234,6 +234,25 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	}
 	defer response.Body.Close()
 	statu, _ := ioutil.ReadAll(response.Body)
+
+	// Check the status of the order above
+
+	feedback, _ := regexp.MatchString("订餐成功", string(statu))
+	if feedback {
+		fmt.Fprintln(w, "提交成功")
+	} else {
+		feedback, _ = regexp.MatchString("帐户异常", string(statu))
+		if feedback {
+			fmt.Fprintln(w, "账户异常")
+		} else {
+			feedback, _ = regexp.MatchString("订餐时间", string(statu))
+			if feedback {
+				fmt.Fprintln(w, "超过订餐时间")
+			} else {
+				fmt.Fprintln(w, "提交失败")
+			}
+		}
+	}
 	
 	return
 }
