@@ -39,7 +39,7 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 
 	// Make Cookies
 
-	cookie_CasModule := http.Cookie{
+	cookie_CasModule    := http.Cookie{
 		Name:  "LcSoftCardV2.CasModule",
 		Value: "/card/",
 	}
@@ -47,7 +47,7 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		Name:  ".LcSoftCardV2",
 		Value: LcSoftCardV2,
 	}
-	cookie_SessionId := http.Cookie{
+	cookie_SessionId    := http.Cookie{
 		Name:  "ASP.NET_SessionId",
 		Value: SessionId,
 	}
@@ -226,6 +226,13 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	request.AddCookie(&cookie_CasModule)
 	request.AddCookie(&cookie_LcSoftCardV2)
 	request.AddCookie(&cookie_SessionId)
+
+	response, err = client.Do(request)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	statu, _ := ioutil.ReadAll(response.Body)
 	
 	return
 }
