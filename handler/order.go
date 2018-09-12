@@ -139,16 +139,16 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		data["Repeater1$ctl0"+notorder[i]+"$CbkMealtimes"] = []string{"on"}
 	}
 
-	data["__EVENTARGUMENT"] = []string{""}
-	data["__LASTFOCUS"] = []string{""}
-	data["__VIEWSTATEENCRYPTED"] = []string{""}
+	data["__EVENTARGUMENT"]                      = []string{""}
+	data["__LASTFOCUS"]                          = []string{""}
+	data["__VIEWSTATEENCRYPTED"]                 = []string{""}
 	data["DrplstRestaurantBasis1$DrplstControl"] = []string{"4d05282b-b96f-4a3f-ba54-fc218266a524"}
 
 	Waitgroup.Wait()
 
-	data["__VIEWSTATE"] = []string{VIEWSTATE}
+	data["__VIEWSTATE"]          = []string{VIEWSTATE}
 	data["__VIEWSTATEGENERATOR"] = []string{VIEWSTATEGENERATOR}
-	data["__EVENTVALIDATION"] = []string{EVENTVALIDATION}
+	data["__EVENTVALIDATION"]    = []string{EVENTVALIDATION}
 
 	request, err = http.NewRequest("POST", MENU+date, strings.NewReader(data.Encode()))
 	if err != nil {
