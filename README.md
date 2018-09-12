@@ -22,7 +22,7 @@
     <a href="README-zh_TW.md">正體中文</a>
 </p>
 
-This is an API based on the online ordering system owned by [Shenzhen Experimental School] (http://www.szsy.cn/). Developers can bypass the originally unnecessary but unavoidable value-passing codes, free themselves from the complicated and incomprehensible logic, and conduct online ordering interaction through the more simplistic interfaces of the packaged __szsy-canteen API__.
+This is an API based on the online ordering system owned by [Shenzhen Experimental School](http://www.szsy.cn/). Developers can bypass the originally unnecessary but unavoidable value-passing codes, free themselves from the complicated and incomprehensible logic, and conduct online ordering interaction through the more simplistic interfaces of the packaged __szsy-canteen API__.
 
 __szsy-canteen API__ is written in __Golang__ which can ensure its efficiency and performance. The API is suitable for the secondary development of the online ordering system ❤️.
 
