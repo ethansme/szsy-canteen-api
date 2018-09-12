@@ -207,6 +207,13 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	data["__VIEWSTATEENCRYPTED"] = []string{""}
 	data["DrplstRestaurantBasis1$DrplstControl"] = []string{"4d05282b-b96f-4a3f-ba54-fc218266a524"}
 	data["__CALLBACKID"]         = []string{"__Page"}
+
+	Waitgroup.Wait()
+
+	data["__CALLBACKPARAM"]      = []string{callbackparam}
+	data["__VIEWSTATE"]          = []string{VIEWSTATE}
+	data["__VIEWSTATEGENERATOR"] = []string{VIEWSTATEGENERATOR}
+	data["__EVENTVALIDATION"]    = []string{EVENTVALIDATION}
 	
 	return
 }
