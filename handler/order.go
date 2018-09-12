@@ -172,6 +172,16 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		fmt.Fprintln(w, "提交成功")
 		return
 	}
+
+	for _, n := range breakfast_param {
+		order = append(order, n)
+	}
+	for _, n := range lunch_param {
+		order = append(order, n)
+	}
+	for _, n := range dinner_param {
+		order = append(order, n)
+	}
 	
 	return
 }
