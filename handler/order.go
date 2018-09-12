@@ -194,7 +194,8 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		n := 0
 		for GvReport := 0; GvReport < peroid_num; GvReport++ {
 			for TxtNum := 0; TxtNum < 8; TxtNum++ {
-				callbackparam += "Repeater1_GvReport_" + strconv.Itoa(GvReport) + "_TxtNum_" + strconv.Itoa(TxtNum) + "@" + order[n] + "|"
+				callbackparam += "Repeater1_GvReport_" + strconv.Itoa(GvReport)
+				callbackparam += + "_TxtNum_" + strconv.Itoa(TxtNum) + "@" + order[n] + "|"
 				n++
 			}
 		}
