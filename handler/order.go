@@ -150,5 +150,12 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	data["__VIEWSTATEGENERATOR"] = []string{VIEWSTATEGENERATOR}
 	data["__EVENTVALIDATION"] = []string{EVENTVALIDATION}
 
+	request, err = http.NewRequest("POST", MENU+date, strings.NewReader(data.Encode()))
+	if err != nil {
+		panic(err)
+	}
+
+	request.Header.Set("Content-Type", "application/x-www-form-urlencoded; param=value")
+
 	return
 }
