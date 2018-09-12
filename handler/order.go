@@ -182,6 +182,12 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	for _, n := range dinner_param {
 		order = append(order, n)
 	}
+
+	if dinner != "null" {
+		peroid_num = 3
+	} else {
+		peroid_num = 2
+	}
 	
 	return
 }
