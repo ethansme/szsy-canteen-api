@@ -162,6 +162,16 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 	request.AddCookie(&cookie_CasModule)
 	request.AddCookie(&cookie_LcSoftCardV2)
 	request.AddCookie(&cookie_SessionId)
+
+	response, err = client.Do(request)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	if i == 3 {
+		fmt.Fprintln(w, "提交成功")
+		return
+	}
 	
 	return
 }
