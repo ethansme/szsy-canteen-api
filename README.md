@@ -24,7 +24,7 @@
 
 This is an API based on the online ordering system owned by [Shenzhen Experimental School](http://www.szsy.cn/). Developers can bypass the originally unnecessary but unavoidable value-passing codes, free themselves from the complicated and incomprehensible logic, and conduct online ordering interaction through the more simplistic interfaces of the packaged __szsy-canteen API__.
 
-__szsy-canteen API__ is written in __Golang__ which can ensure its efficiency and performance. The API is suitable for the secondary development of the online ordering system ❤️.
+__szsy-canteen API__ is written in __Golang__ which can ensure its efficiency and performance. The API is suitable for the secondary development of the online ordering system 💗
 
 ## Why use this API
 
@@ -251,7 +251,7 @@ You will logout after reading `登出成功`.
 
 __szsy-canteen API__ error messages are fairly legible, but there is a special explanation for this.
 
-If you are using a key to request dates list, obtain menu, or submit request with receiving "口令错误或过期" error message, it means your key may have expired. In this case, all you need to do is re-login to get the new key.
+If you are using a key to request dates list, obtain menu, or submit request with receiving `口令错误或过期` error message, it means your key may have expired. In this case, all you need to do is re-login to get the new key.
 
 ### Tips for ordering multiple servings
 
@@ -269,4 +269,4 @@ This text added here is a piece of advice: As a developer, you can offer an entr
 
 [@GrakePch](https://github.com/GrakePch)
 
-Thanks to the above two for your technical and moral supports during development.
+Thanks to the above two for your technical and moral supports during development 💗
