@@ -157,5 +157,11 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 
 	request.Header.Set("Content-Type", "application/x-www-form-urlencoded; param=value")
 
+	// Add Cookies
+
+	request.AddCookie(&cookie_CasModule)
+	request.AddCookie(&cookie_LcSoftCardV2)
+	request.AddCookie(&cookie_SessionId)
+	
 	return
 }
