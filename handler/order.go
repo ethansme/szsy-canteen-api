@@ -200,6 +200,13 @@ func OrderHandler(w http.ResponseWriter, request *http.Request) {
 		}
 		Waitgroup.Done()
 	}()
+
+	data["__EVENTTARGET"]        = []string{""}
+	data["__EVENTARGUMENT"]      = []string{""}
+	data["__LASTFOCUS"]          = []string{""}
+	data["__VIEWSTATEENCRYPTED"] = []string{""}
+	data["DrplstRestaurantBasis1$DrplstControl"] = []string{"4d05282b-b96f-4a3f-ba54-fc218266a524"}
+	data["__CALLBACKID"]         = []string{"__Page"}
 	
 	return
 }
